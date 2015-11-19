@@ -1,0 +1,38 @@
+<md-dialog>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Crear Nueva Tarea o Mantenimiento</h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="min-width:300px;max-width:800px;max-height:810px; ">
+      <div  ng-show="$root.currentUser">
+        <md-input-container>
+          <label>Cliente</label>
+          <input ng-model="newTask.client" id="client" type="text" aria-label="Cliente">
+        </md-input-container>
+        <md-input-container>
+          <label>Dirección</label>
+          <input ng-model="newTask.address" id="address" type="text" aria-label="Direccion">
+        </md-input-container>
+        <md-input-container>
+          <label>Descripción</label>
+          <input ng-model="newTask.description" id="description" type="text" aria-label="Descripcion">
+        </md-input-container>
+        
+        <md-datepicker ng-model="newTask.date" id="date" md-placeholder="Fecha"></md-datepicker>
+      
+      </div>
+    </md-dialog-content>
+    <div class="md-actions" layout="row">
+      <span flex></span>
+      <md-button ng-click="close()">
+        Cancelar
+      </md-button>
+      <md-button ng-click="addNewTask()" style="margin-right:20px;">
+        Guardar
+      </md-button>
+    </div>
+  </form>
+</md-dialog>

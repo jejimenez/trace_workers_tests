@@ -1,0 +1,46 @@
+<md-content flex-gt-sm layout-gt-sm="row" class="ma-tasks-list">
+  <div layout-gt-sm="row" flex-gt-sm>
+    <div flex-gt-sm="50" flex-sm>
+      <div>
+        <div layout-padding layout="row">
+          <md-input-container style="width:50%;margin-right:10px;">
+            <label>Buscar</label>
+            <input type="text" ng-model="search"/>
+          </md-input-container>
+          <md-button class="md-fab md-primary" ng-show="$root.currentUser && $root.currentUser.profile.rol == 'Admin'" aria-label="Eat cake" ng-click="openAddNewTaskModal()">
+            <md-icon md-font-set="material-icons"> add </md-icon>
+          </md-button>
+        </div>
+      </div>
+      <md-content class="md-padding" style="padding-top:0;">
+        <dir-pagination-controls boundary-links="true"  on-page-change="pageChanged(newPageNumber)" id="pagination-list" ></dir-pagination-controls>
+        <div  dir-paginate="task in tasks | itemsPerPage: perPage" total-items="tasksCount.count" class="ma-task">
+          <md-card>
+            <md-card-content>
+              <h2 class="md-title ma-name" style=""><a href="/tasks/{{task._id}}">{{task.client}}</a> - ({{task.date | date:'dd-M-yyyy'}})</h2>
+              <p class="ma-address" style="padding:0 10px;margin-bottom:35px;margin-top: 6px;">Dirección: {{task.address}}</p>
+              <p class="ma-description" style="padding:0 10px;margin-bottom:35px;margin-top: 6px;">{{task.description}}</p>
+              <div layout="row">
+                <div flex="1">
+                  <p style="margin-top:0px;margin-bottom:3px;font-size:14px;color:#aaa;">
+                    <small>Creado por {{ creator(task) | displayName }}</small>
+                  </p>
+                  <md-switch ng-model="task.stat" aria-label="Estado" class="md-primary md-block">
+                    <span ng-if="task.stat" style="font-size:12px;color:blue;">| Hecho!</span>
+                    <span ng-if="!task.stat" style="font-size:12px;color:gray;">| Pendiente!</span>
+                  </md-switch>
+                </div>
+              </div>
+            </md-card-content>
+          </md-card>
+        </div>
+      </md-content>
+    </div>
+    <div flex-gt-sm="50" flex-sm layout="row" style="min-height:300px;">
+      <ui-gmap-google-map center="map.center" zoom="map.zoom">
+        <ui-gmap-markers models="tasks" coords="'location'" click="onClicked()" idkey="'_id'" doRebuildAll="true">
+        </ui-gmap-markers>
+      </ui-gmap-google-map>
+    </div>
+  </div>
+</md-content>

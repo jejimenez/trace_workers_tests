@@ -1,0 +1,30 @@
+<md-content layout="row">
+  <span flex></span>
+  <md-whiteframe layout="column" flex="50">
+    <div layout="row" layout-align="space-around center">
+      <div>Ingresar</div>
+    </div>
+    <form>
+      <md-input-container>
+        <md-icon md-svg-icon="content:ic_mail_24px"></md-icon>
+        <input type="text" ng-model="lc.credentials.email"
+               placeholder="email" aria-label="email"/>
+      </md-input-container>
+      <md-input-container>
+        <md-icon md-svg-icon="action:ic_lock_open_24px"></md-icon>
+        <input type="password" ng-model="lc.credentials.password"
+               placeholder="contraseña" aria-label="password"/>
+      </md-input-container>
+      <md-button class="md-raised md-primary" ng-click="lc.login()"
+                 aria-label="login">Ingresar
+      </md-button>
+    </form>
+    <div layout="row" layout-align="space-around center">
+      <a href="/resetpw">Olvidó la contraseña?</a>
+    </div>
+    <div ng-show="lc.error" class="md-warn">
+      <small>{{ lc.error }}</small>
+    </div>
+  </md-whiteframe>
+  <span flex></span>
+</md-content>

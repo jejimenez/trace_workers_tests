@@ -1,0 +1,28 @@
+<md-content layout="row">
+  <span flex></span>
+  <div layout="column" flex = 50>
+      <md-list>
+        <md-list-item>
+          <div flex = 50>USUARIO</div>
+          <div flex = 50>ADMIN</div>
+        </md-list-item>
+        <md-list-item ng-repeat="user in users | unsetadmin:$root.currentUser">
+          <div flex = 60>
+            <span>{{ user | displayName }} ({{ user.profile.stat}})</span>
+            <svg xmlns="http://www.w3.org/2000/svg" style="height: 30px;width: 30px;" version="1.1">
+               <circle cx="17" cy="17" r="9" stroke="#333" stroke-width="4" 
+               fill="{{ user.profile.stat ==  'Activo' ? '#5EBD5E' :
+               user.profile.stat ==  'Inactivo' ? 'gray' :
+               user.profile.stat ==  'Hora de Almuerzo' ? 'orange' :
+               user.profile.stat ==  'En Mantenimiento' ? '#ED6461' : 'black' }}"
+               />
+            </svg>
+          </div>
+          <div flex = 40  style="float: right;">
+            <md-checkbox ng-model="user.profile.rol" ng-true-value="'Admin'" ng-false-value="''"  ng-change="onChangeAdmin(user)" aria-label="Admin"></md-checkbox>
+          </div>
+        </md-list-item>
+      </md-list>
+  </div>
+  <span flex></span>
+</md-content>

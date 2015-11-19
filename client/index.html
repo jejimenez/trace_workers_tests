@@ -1,0 +1,30 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<md-toolbar md-scroll-shrink layout="row" layout-align="center right" layout-padding>
+  <h1 class="md-toolbar-tools"><a ui-sref="login"><s>TELENER</s></a></h1>
+  <span flex></span>
+  <div class="navbar-right navbar-text" ng-controller="indexController" layout-align="center center" layout="row" >
+
+      <md-select ng-show="$root.currentUser" name="estado" aria-label="estado" ng-model="user_stat" ng-change="onChangeStat()">
+        <md-option value="Activo">Activo</md-option>
+        <md-option value="Inactivo">Inactivo</md-option>
+        <md-option value="En Mantenimiento">En Mantenimiento</md-option>
+        <md-option value="Hora de Almuerzo">Hora de almuerzo</md-option>
+      </md-select>
+
+    <div ng-show="$root.currentUser" ng-bind="$root.currentUser.emails[0].address"></div>
+    <md-button ng-href="/login" ng-hide="$root.currentUser">Login</md-button>
+    <md-button ng-href="/tasks" ng-show="$root.currentUser">Tareas/Mantenimientos</md-button>
+    <md-button ng-href="/users" ng-show="$root.currentUser && $root.currentUser.profile.rol == 'Admin'">Usuarios</md-button>
+    <md-button ng-href="/register" ng-hide="$root.currentUser">Registrar</md-button>
+    <md-button ng-href="/logout" ng-show="$root.currentUser">Logout</md-button>
+  </div>
+</md-toolbar>
+<!--
+<div ui-view flex-gt-sm layout-gt-sm="row"></div>-->
+<div ui-view layout-align="center center" ></div>
+</body>

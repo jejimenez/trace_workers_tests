@@ -1,0 +1,58 @@
+<form>
+<md-content layout="row" class="ma-task-details">
+<div layout="column" flex="50" >
+  <!--<div flex="33" offset="33">-->
+  <div>
+    <legend style="margin:20px 0;">
+      Modificar Tarea o Mantenimiento:
+    </legend>
+    <div layout="column">
+      <md-input-container>
+        <label>Cliente</label>
+        <input ng-model="task.client" ng-disabled="task.owner != $root.currentUser._id" type="text" aria-label="Name">
+      </md-input-container>
+      <md-input-container>
+        <label>Dirección</label>
+        <input ng-model="task.address" ng-disabled="task.owner != $root.currentUser._id" type="text" aria-label="Direccion">
+      </md-input-container>
+      <md-input-container>
+        <label>Descripción</label>
+        <input ng-model="task.description" ng-disabled="task.owner != $root.currentUser._id" type="text" aria-label="Descripcion">
+      </md-input-container>
+
+      <md-datepicker ng-disabled="task.owner != $root.currentUser._id"  ng-model="task.date" id="date" md-placeholder="Fecha"></md-datepicker>
+      
+      <md-checkbox ng-model="task.stat" ng-disabled="task.owner != $root.currentUser._id" aria-label="Hecho">
+        Hecho!
+      </md-checkbox>
+      <md-input-container>
+        <label>Asignar al usuairo:</label>
+        <md-select ng-disabled="task.owner != $root.currentUser._id"  ng-model="task.assigned_to">
+          <md-option ng-repeat="user in users" value="{{user._id}}">
+            {{user.emails[0].address}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+
+
+      <div layout="row" layout-align="left">
+        <md-button ng-show="task.owner == $root.currentUser._id" ng-click="save()">Guardar</md-button>
+        <md-button ng-href="/tasks">Regresar</md-button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--<span flex>-->
+    <div flex class="angular-google-map-container">
+      <ui-gmap-google-map center="task.location || map.center" 
+                          events="map.events" zoom="map.zoom">
+        <ui-gmap-marker coords="task.location" options="map.marker.options" 
+                        events="map.marker.events" idkey="task._id">
+        </ui-gmap-marker>
+      </ui-gmap-google-map>
+    </div>
+<!--</span>-->
+</md-content>
+
+</form>
