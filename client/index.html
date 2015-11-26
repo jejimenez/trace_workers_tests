@@ -20,6 +20,7 @@
     <md-button ng-href="/login" ng-hide="$root.currentUser">Login</md-button>
     <md-button ng-href="/tasks" ng-show="$root.currentUser">Tareas/Mantenimientos</md-button>
     <md-button ng-href="/users" ng-show="$root.currentUser && $root.currentUser.profile.rol == 'Admin'">Usuarios</md-button>
+    <md-button ng-href="/reports" ng-show="$root.currentUser && $root.currentUser.profile.rol == 'Admin'">Reportes</md-button>
     <md-button ng-href="/register" ng-hide="$root.currentUser">Registrar</md-button>
     <md-button ng-href="/logout" ng-show="$root.currentUser">Logout</md-button>
   </div>

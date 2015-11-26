@@ -85,4 +85,15 @@ angular.module("trace_workers_app").controller("TasksListCtrl", function ($scope
         });
     };
 
+    $scope.onChangeStat = function(task){
+      if(task.stat){
+        task.doneAt = new Date();
+        task.spentTime = Math.abs(task.doneAt-task.createdAt);
+      }
+      else{
+        task.doneAt = '';
+        task.spentTime = '';
+      }
+    }
+
 });

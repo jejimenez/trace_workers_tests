@@ -3,7 +3,8 @@ angular.module('trace_workers_app',[
   'ui.router',
   'angularUtils.directives.dirPagination',
   'uiGmapgoogle-maps',
-  'ngMaterial'
+  'ngMaterial',
+  'chart.js'
 ]);
 
 var themeIcons = ['$mdIconProvider' , function ($mdIconProvider) {
@@ -32,6 +33,18 @@ if (Meteor.isCordova)
   angular.element(document).on("deviceready", onReady);
 else
   angular.element(document).ready(onReady);
+
+angular.module('trace_workers_app')
+  .config(['ChartJsProvider', function (ChartJsProvider) {
+    // Configure all charts
+    ChartJsProvider.setOptions({
+      responsive: false
+    });
+    // Configure all line charts
+    ChartJsProvider.setOptions('Line', {
+      datasetFill: false
+    });
+  }]);
 
 /*
 accounts-password                     1.1.4  Password support for accounts

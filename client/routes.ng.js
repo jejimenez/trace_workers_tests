@@ -50,6 +50,12 @@ angular.module("trace_workers_app").config(function ($urlRouterProvider, $stateP
       controller: 'UsersCtrl',
       controllerAs: 'usr'
     })
+    .state('reports', {
+      url: '/reports',
+      templateUrl: 'client/reports/views/reports.ng.html',
+      controller: 'ReportsCtrl',
+      controllerAs: 'rep'
+    })
     .state('logout', {
       url: '/logout',
       resolve: {

@@ -25,7 +25,7 @@
                   <p style="margin-top:0px;margin-bottom:3px;font-size:14px;color:#aaa;">
                     <small>Creado por {{ creator(task) | displayName }}</small>
                   </p>
-                  <md-switch ng-model="task.stat" aria-label="Estado" class="md-primary md-block">
+                  <md-switch ng-model="task.stat" aria-label="Estado" class="md-primary md-block" ng-change="onChangeStat(task)">
                     <span ng-if="task.stat" style="font-size:12px;color:blue;">| Hecho!</span>
                     <span ng-if="!task.stat" style="font-size:12px;color:gray;">| Pendiente!</span>
                   </md-switch>

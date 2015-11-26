@@ -1,6 +1,5 @@
 angular.module("trace_workers_app").controller("AddNewTaskCtrl", ['$scope', '$meteor', '$rootScope', '$state', '$mdDialog', 'tasks',
   function ($scope, $meteor, $rootScope, $state, $mdDialog, tasks) {
-    var dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
     $scope.newTask = {/*
       client: '',
       address: '',
@@ -26,6 +25,7 @@ angular.module("trace_workers_app").controller("AddNewTaskCtrl", ['$scope', '$me
         }
         if($scope.newTask.client){
           $scope.newTask.owner = $rootScope.currentUser._id;
+          $scope.newTask.createdAt = new Date();
           $scope.added = tasks.push($scope.newTask);
           $scope.newTask = '';
           $mdDialog.hide();
