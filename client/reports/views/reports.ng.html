@@ -1,0 +1,23 @@
+
+
+<md-content layout="column" layout-align="center center">
+<div flex layout-align="center center">
+
+          <md-card>
+            <md-card-content>
+              <h2 class="md-title ma-name" style="">Tiempo de proceso (horas) vs Operador - El tiempo se suma desde el momento de creación hasta el cambio de estado a "Hecho!"</h2>
+			<canvas id="bar" class="chart chart-pie" chart-data="data" chart-labels="labels" width="650" chart-legend="true" ></canvas>
+            </md-card-content>
+          </md-card>
+          <md-card>
+            <md-card-content>
+              <h2 class="md-title ma-name" style="">Mantenimientos/Tareas vs Ubicación</h2>
+				<canvas id="bar2" class="chart chart-bar" chart-data="data2" chart-labels="labels2"  width="650" chart-legend="true"></canvas> 
+            </md-card-content>
+          </md-card>
+</div>
+</md-content>
+
+<!--
+<canvas id="base" class="chart-base" chart-type="type" chart-data="data" chart-labels="labels" 
+    chart-legend="true" chart-series="series" chart-click="onClick"></canvas>-->
