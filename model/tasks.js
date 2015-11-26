@@ -24,5 +24,12 @@ Meteor.methods({
       var data = Tasks.aggregate([{$group: {_id: "$assigned_to", spentTime: {$sum: "$spentTime"}}}]);
       return data;
     }
+  },
+  report2: function () {
+    if (Meteor.isServer) {
+      var data = Tasks.aggregate([{$group: {_id: "$neighborhood", num: {$sum: 1}}}]);
+      return data;
+    }
   }
 });
+

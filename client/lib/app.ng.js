@@ -33,7 +33,7 @@ if (Meteor.isCordova)
   angular.element(document).on("deviceready", onReady);
 else
   angular.element(document).ready(onReady);
-
+/*
 angular.module('trace_workers_app')
   .config(['ChartJsProvider', function (ChartJsProvider) {
     // Configure all charts
@@ -45,7 +45,7 @@ angular.module('trace_workers_app')
       datasetFill: false
     });
   }]);
-
+*/
 /*
 accounts-password                     1.1.4  Password support for accounts
 angular                               1.0.2* Everything you need to use AngularJS in your Meteor app

@@ -1,4 +1,4 @@
-angular.module("trace_workers_app").controller("TaskDetailsCtrl", function ($scope, $stateParams, $meteor) {
+angular.module("trace_workers_app").controller("TaskDetailsCtrl", function ($scope, $stateParams, $meteor, $timeout, $rootScope) {
   $scope.task = $meteor.object(Tasks, $stateParams.taskId, false);
   $scope.users = $meteor.collection(function(){return Meteor.users.find({ 'profile.rol' : { $ne : "Admin" } })} , false).subscribe('users');
   if($scope.$meteorSubscribe){$scope.$meteorSubscribe('tasks')};
@@ -15,9 +15,28 @@ angular.module("trace_workers_app").controller("TaskDetailsCtrl", function ($sco
         toastr.error('La fecha no tiene un formato váldo. Porfavor seleccione la fecha.');
         return
       }
+      // Get the reverse geocode from google api      
+      if($scope.task.location && google ){
+        var geocoder = new google.maps.Geocoder;
+        var latlng = {lat: parseFloat($scope.task.location.latitude), lng: parseFloat($scope.task.location.longitude)}
+        geocoder.geocode({'location':latlng}, function(results, status){
+          if(status === 'OK' ){
+            if(results[2]){
+              $scope.task.neighborhood = results[2].address_components[0].long_name;
+              $scope.task.save();
+            }
+            else{console.log('NO RESULTS')}
+          }
+          else{console.log('GEOCODER ERROR: '+status)}
+        } );
+      }
       $scope.saved = $scope.task.save();
       toastr.success('Guardado.');
     }
+  }
+
+  function savegeo(){
+    var geocoder = new google.maps.Geocoder;
   }
 
   $scope.map = {
